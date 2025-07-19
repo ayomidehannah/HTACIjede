@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Admin Panel - Holy Trinity Anglican Church</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="admin/login.js"></script>
+    <script src="admin/admin.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5">Admin Login</h1>
+        <form id="loginForm" class="mt-4">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+        <div id="editor" class="mt-5 d-none">
+            <h2>Edit Pages</h2>
+            <select id="pageSelect" class="form-select mb-3">
+                <option value="index.html">Homepage</option>
+                <option value="about.html">About</option>
+                <option value="activity.html">Activities</option>
+                <option value="event.html">Events</option>
+                <option value="sermon.html">Sermons</option>
+                <option value="blog.html">Blog</option>
+            </select>
+            <textarea id="pageContent" class="form-control" rows="10"></textarea>
+            <button id="saveButton" class="btn btn-success mt-3">Save Changes</button>
+        </div>
+    </div>
+</body>
+
+</html>

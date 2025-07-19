@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Edit Homepage</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5">
+        <h2 class="row align-items-center">EDIT HOMEPAGE CONTENT</h2>
+        <div id="saveMsg" class="mt-3 text-success" style="display:none;">Changes saved!</div>
+
+        <!-- Editable Hero Start -->
+        <div class="container-fluid hero-header py-5" style="min-height: 60vh; margin-top: 120px;">
+            <h2 class="text-center">Edit Hero Section</h2>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 text-center text-lg-start">
+                        <div class="hero-header-inner animated fadeInLeft" style="background: rgba(255,255,255,0.85); border-radius: 1rem; padding: 2.5rem 2rem 2rem 2rem; box-shadow: 0 8px 32px rgba(0,0,0,0.08);">
+                            <p class="fs-5 text-primary fw-semibold mb-2 text-uppercase letter-spacing-1">
+                                <label for="heroTitle" class="form-label">Hero Title</label>
+                                <input type="text" class="form-control d-inline w-auto" id="editWelcomeTo" value="Welcome to">
+                            </p>
+                            <h1 class="display-4 fw-bold mb-3 text-dark" style="line-height: 1.1;">
+                                <input type="text" class="form-control mb-2" id="editChurchName" value="Holy Trinity Anglican Church"><br>
+                                <span class="text-primary">
+                                    <input type="text" class="form-control d-inline w-auto" id="editChurchLocation" value="Ijede, Ikorodu, Lagos State">
+                                </span>
+                            </h1>
+                            <hr class="my-4" style="width: 60px; border-top: 3px solid #0d6efd; margin-left: 0;">
+                            <div class="mb-3">
+                                <span class="badge bg-primary fs-6 py-2 px-3 mb-2">Edit Diocesan Theme</span>
+                                <h2 class="h3 fw-semibold text-dark mb-1">
+                                    <input type="text" class="form-control d-inline w-auto" id="editDiocesanTheme" value="Be A Beacon Of Light">
+                                    <span class="text-primary">
+                                        (<input type="text" class="form-control d-inline w-auto" id="editDiocesanThemeVerse" value="Matt 5:16">)
+                                    </span>
+                                </h2>
+                                <h5 class="fw-normal text-secondary mb-0">
+                                    <input type="text" class="form-control d-inline w-auto" id="editDiocesanThemeYoruba" value="Je Olutan Imole (Matt 5:16)">
+                                </h5>
+                            </div>
+                            <div class="d-flex flex-wrap gap-3 mt-4">
+                                <div class="bg-success bg-gradient rounded-pill px-4 py-2 text-white fw-semibold shadow-sm">
+                                    Liturgical Colour: 
+                                    <input type="text" class="form-control d-inline w-auto" id="editLiturgicalColour" value="Green">
+                                </div>
+                                <div class="bg-warning bg-gradient rounded-pill px-4 py-2 text-dark fw-semibold shadow-sm">
+                                    Theme for the Season: 
+                                    <input type="text" class="form-control d-inline w-auto" id="editThemeSeason" value="The Ploys Of Satan">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 d-none d-lg-flex justify-content-center align-items-center">
+                        <img src="img/church-hero.png" class="img-fluid rounded shadow-lg" style="max-height: 340px; object-fit: cover;" id="editHeroImage">
+                        <input type="text" class="form-control mt-2" id="editHeroImageSrc" value="img/church-hero.png" placeholder="Hero Image URL">
+                        <div class="mb-3">
+                                    <label for="Hero-image" class="form-label">Change Hero Image</label>
+                                    <input type="file" class="form-control" id="hero-image">
+                                    <div class="mt-2" id="hero-image-preview">
+                                        <img src="" class="preview-image d-none" alt="hero-image section preview">
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Editable Hero End -->
+
+        <!-- Editable About Start -->
+        <div class="container-fluid about py-5">
+            <h1 class="text-center">Edit About Section</h1>
+            <div class="container py-5">
+                <div class="row g-5 mb-5">
+                    <div class="col-xl-6">
+                        <div class="row g-4">
+                            
+                            <div class="col-6">
+                                <img src="img/about-1.jpg" class="img-fluid h-100 wow zoomIn" data-wow-delay="0.1s" alt="" id="editAboutImg1">
+                                <input type="text" class="form-control mt-2" id="editAboutImg1Src" value="img/about-1.jpg" placeholder="About Image 1 URL">
+                                 <div class="mb-3">
+                                    <label for="About-image1" class="form-label">About Image 1</label>
+                                    <input type="file" class="form-control" id="about-image1">
+                                    <div class="mt-2" id="about-image1-preview">
+                                        <img src="" class="preview-image d-none" alt="about1 section preview">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <img src="img/about-2.jpg" class="img-fluid pb-3 wow zoomIn" data-wow-delay="0.1s" alt="" id="editAboutImg2">
+                                <input type="text" class="form-control mt-2" id="editAboutImg2Src" value="img/about-2.jpg" placeholder="About Image 2 URL">
+                                <div class="mb-3">
+                                    <label for="About-image2" class="form-label">About Image 2</label>
+                                    <input type="file" class="form-control" id="about-image2">
+                                    <div class="mt-2" id="about-image2-preview">
+                                        <img src="" class="preview-image d-none" alt="about2 section preview">
+                                    </div>
+                                </div>
+
+                                <img src="img/about-3.jpg" class="img-fluid pt-3 wow zoomIn" data-wow-delay="0.1s" alt="" id="editAboutImg3">
+                                <input type="text" class="form-control mt-2" id="editAboutImg3Src" value="img/about-3.jpg" placeholder="About Image 3 URL">
+                                <div class="mb-3">
+                                    <label for="About-image3" class="form-label">About Image 3</label>
+                                    <input type="file" class="form-control" id="about-image3">
+                                    <div class="mt-2" id="about-image3-preview">
+                                        <img src="" class="preview-image d-none" alt="about3 section preview">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 wow fadeIn" data-wow-delay="0.5s">
+                        <p class="fs-5 text-uppercase text-primary">
+                            <input type="text" class="form-control" id="editAboutTitle" value="About HOLY TRINITY ANGLICAN CHURCH &#10; IJEDE, IKOROUDU ,LAGOS STATE">
+                        </p>
+                        <h1 class="display-5 pb-4 m-0">
+                            <input type="text" class="form-control" id="editAboutSubtitle" value="Christ For All Nations">
+                        </h1>
+                        <div class="mb-4">
+                            <h5>Our Vision</h5>
+                            <textarea class="form-control" id="editVision" rows="2">To be the leading Diocese in the Church of Nigeria in preparing this Nation for the second coming of our Lord Jesus Christ.</textarea>
+                        </div>
+                        <div class="mb-4">
+                            <h5>Our Mission</h5>
+                            <ul>
+                                <li><input type="text" class="form-control mb-2" value="To ensure a sustained growth in the number of churches and worshippers within the Diocese." id="editMission1"></li>
+                                <li><input type="text" class="form-control mb-2" value="To continue to enhance the mode of worship, teach and preach the word of God in all our churches thereby creating worshippers fit for the kingdom of God." id="editMission2"></li>
+                                <li><input type="text" class="form-control mb-2" value="To assist every member in the understanding and practice of the 39 Articles of our faith." id="editMission3"></li>
+                                <li><input type="text" class="form-control mb-2" value="To develop and inspire in every Church the principle of self-sufficiency and Christian generosity, thereby ensuring a strong and viable Diocese." id="editMission4"></li>
+                                <li><input type="text" class="form-control mb-2" value="To continue to promote peaceful and cordial relationship with other Dioceses in order to ensure the success of our common commitment." id="editMission5"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="container text-center bg-primary py-5 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="row g-4 align-items-center ">
+                        <div class="col-lg-12 d-flex flex-column flex-lg-row align-items-center justify-content-center gap-4">
+                            <i class="fa fa-church fa-5x text-white"></i>
+                            <h1 class="mb-0 text-white">
+                                <input type="text" class="form-control" id="editAboutBanner" value="Tell The Story, Keep The Faith !!!">
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Editable About End -->
+
+        <!-- Editable Activities Start -->
+        <div class="container-fluid activities py-5 bg-light">
+            <div class="container py-5">
+                <h1 class="text-center">Edit Activities Section</h1>
+                <div class="text-center mb-5 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="mb-2">
+                        <label for="editActivitiesTitle" class="form-label">Section Title</label>
+                        <input type="text" class="form-control d-inline w-auto" id="editActivitiesTitle" value="Activities">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editActivitiesSubtitle" class="form-label">Section Subtitle</label>
+                        <input type="text" class="form-control" id="editActivitiesSubtitle" value="Our Weekly Activities">
+                    </div>
+                    <hr class="mx-auto" style="width: 80px; border-top: 3px solid #0d6efd;">
+                    <div class="mb-0"></div>
+                        <label for="editActivitiesDesc" class="form-label">Section Description</label>
+                        <input type="text" class="form-control" id="editActivitiesDesc" value="Join us throughout the week for spiritual growth, fellowship, and worship. There’s something for everyone!">
+                    </div>
+                </div>
+                <div class="row g-4 justify-content-center">
+                    <!-- Activity Card 1 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 shadow-lg h-100 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="card-body text-center py-5">
+                                <div class="mb-4">
+                                    <span class="bg-primary bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center" style="width:70px; height:70px;">
+                                        <i class="fa fa-praying-hands fa-2x text-white"></i>
+                                    </span>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity1Day" class="form-label">Day</label>
+                                    <input type="text" class="form-control fw-bold text-primary" value="Mondays & Saturdays" id="editActivity1Day">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity1Title" class="form-label">Activity Title</label>
+                                    <input type="text" class="form-control text-secondary" value="Morning Prayer (Adura Owuro)" id="editActivity1Title">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity1Time" class="form-label">Time</label>
+                                    <input type="text" class="form-control badge bg-primary fs-6 px-3 py-2" value="5:30am" id="editActivity1Time">
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Activity Card 2 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 shadow-lg h-100 wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="card-body text-center py-5">
+                                <div class="mb-4">
+                                    <span class="bg-success bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center" style="width:70px; height:70px;">
+                                        <i class="fa fa-pray fa-2x text-white"></i>
+                                    </span>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity2Day" class="form-label">Day</label>
+                                    <input type="text" class="form-control fw-bold text-success" value="1st Day of the Month" id="editActivity2Day">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity2Title" class="form-label">Activity Title</label>
+                                    <input type="text" class="form-control text-secondary" value="Adura Ajigbare (Begin With Jesus)" id="editActivity2Title">
+                                </div>
+                                <div class="d-flex justify-content-center gap-2 mb-2">
+                                    <div>
+                                        <label for="editActivity2Time1" class="form-label">Time</label>
+                                        <input type="text" class="form-control badge bg-success fs-6 px-3 py-2" value="6:00am" id="editActivity2Time1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Activity Card 3 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 shadow-lg h-100 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="card-body text-center py-5">
+                                <div class="mb-4">
+                                    <span class="bg-warning bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center" style="width:70px; height:70px;">
+                                        <i class="fa fa-bible fa-2x text-white"></i>
+                                    </span>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity3Day" class="form-label">Day</label>
+                                    <input type="text" class="form-control fw-bold text-warning" value="Tuesdays" id="editActivity3Day">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity3Title1" class="form-label">Activity Title 1</label>
+                                    <input type="text" class="form-control mb-1 text-secondary" value="Women's Prayer (Eto Obinrin)" id="editActivity3Title1">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity3Time1" class="form-label">Time</label>
+                                    <input type="text" class="form-control badge bg-warning text-dark fs-6 px-3 py-2" value="5:00pm" id="editActivity3Time1">
+                                </div>
+                                <hr class="my-2" style="width: 40px; margin: 0 auto; border-top: 2px solid #ffc107;">
+                                <div class="mb-2">
+                                    <label for="editActivity3Title2" class="form-label">Activity Title 2</label>
+                                    <input type="text" class="form-control mb-1 text-secondary" value="Bible Study" id="editActivity3Title2">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity3Time2" class="form-label">Time</label>
+                                    <input type="text" class="form-control badge bg-warning text-dark fs-6 px-3 py-2" value="6:00pm" id="editActivity3Time2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Activity Card 4 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 shadow-lg h-100 wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="card-body text-center py-5">
+                                <div class="mb-4">
+                                    <span class="bg-info bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center" style="width:70px; height:70px;">
+                                        <i class="fa fa-wine-glass fa-2x text-white"></i>
+                                    </span>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity4Day" class="form-label">Day</label>
+                                    <input type="text" class="form-control fw-bold text-info" value="Wednesdays" id="editActivity4Day">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity4Title" class="form-label">Activity Title</label>
+                                    <input type="text" class="form-control text-secondary" value="Mid-week Holy Communion Service" id="editActivity4Title">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity4Time" class="form-label">Time</label>
+                                    <input type="text" class="form-control badge bg-info text-dark fs-6 px-3 py-2" value="5:30pm" id="editActivity4Time">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Activity Card 5 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 shadow-lg h-100 wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="card-body text-center py-5">
+                                <div class="mb-4">
+                                    <span class="bg-danger bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center" style="width:70px; height:70px;">
+                                        <i class="fa fa-book-open fa-2x text-white"></i>
+                                    </span>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity5Day" class="form-label">Day</label>
+                                    <input type="text" class="form-control fw-bold text-danger" value="Thursdays" id="editActivity5Day">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity5Title1" class="form-label">Activity Title 1</label>
+                                    <input type="text" class="form-control mb-1 text-secondary" value="Hour Of Mercy (Wakati Aanu)" id="editActivity5Title1">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity5Time1" class="form-label">Time</label>
+                                    <input type="text" class="form-control badge bg-danger fs-6 px-3 py-2" value="7:30am – 9:30am" id="editActivity5Time1">
+                                </div>
+                                <hr class="my-2" style="width: 40px; margin: 0 auto; border-top: 2px solid #dc3545;">
+                                <div class="mb-2">
+                                    <label for="editActivity5Title2" class="form-label">Activity Title 2</label>
+                                    <input type="text" class="form-control mb-1 text-secondary" value="Lay Readers / Teachers Class" id="editActivity5Title2">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity5Time2" class="form-label">Time</label>
+                                    <input type="text" class="form-control badge bg-danger fs-6 px-3 py-2" value="5:00pm" id="editActivity5Time2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Activity Card 6 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 shadow-lg h-100 wow fadeInUp" data-wow-delay="0.6s">
+                            <div class="card-body text-center py-5">
+                                <div class="mb-4">
+                                    <span class="bg-secondary bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center" style="width:70px; height:70px;">
+                                        <i class="fa fa-people-carry fa-2x text-white"></i>
+                                    </span>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity6Day" class="form-label">Day</label>
+                                    <input type="text" class="form-control fw-bold text-secondary" value="Saturdays" id="editActivity6Day">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity6Title" class="form-label">Activity Title</label>
+                                    <input type="text" class="form-control text-secondary" value="Choir / Youth / Brigade Activities" id="editActivity6Title">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="editActivity6Time" class="form-label">Time</label>
+                                    <input type="text" class="form-control badge bg-secondary fs-6 px-3 py-2" value="5:00pm" id="editActivity6Time">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-5">
+                    <label for="editActivitiesFooter" class="form-label">Section Footer</label>
+                    <input type="text" class="form-control fs-5 text-primary fw-semibold" id="editActivitiesFooter" value="You are warmly invited to participate in any of our weekly activities!">
+                </div>
+            </div>
+        </div>
+        <!-- Editable Activities End -->
+
+
+
+        <!-- Events Start -->
+        <div class="container-fluid event py-5">
+            <h1 class="text-center">Edit Events Section</h1>
+            <div class="container py-5">
+            <h1 class="display-3 mb-5 wow fadeIn" data-wow-delay="0.1s">
+                
+                <input type="text" class="form-control d-inline w-auto" id="editEventsTitle" value="Upcoming">
+                <span class="text-primary">
+                <input type="text" class="form-control d-inline w-auto" id="editEventsTitleHighlight" value="Events">
+                </span>
+            </h1>
+            <div id="events-list">
+                <div class="row g-4 event-item wow fadeIn" data-wow-delay="0.1s">
+                <div class="col-3 col-lg-2 pe-0">
+                    <div class="text-center border-bottom border-dark py-3 px-2">
+                    <label for="editEvent1Date" class="form-label">Edit date</label>
+                    <input type="text" class="form-control mb-1" id="editEvent1Date" value="27 Apr 2025">
+                    <label for="editEvent1Time" class="form-label">Edit time</label>
+                    <input type="text" class="form-control" id="editEvent1Time" value="Sun 08:00am">
+                    </div>
+                </div>
+                <div class="col-9 col-lg-6 border-start border-dark pb-5">
+                    <div class="ms-3">
+                    <label for="editEvent1Title" class="form-label">Theme of the Event</label>
+                    <input type="text" class="form-control mb-3 fw-bold" id="editEvent1Title" value="135 years Founder's Day Anniversary Celebration">
+                    <label for="editEvent1Desc" class="form-label">Event Details</label>
+                    <textarea class="form-control mb-4" id="editEvent1Desc" rows="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+                                aliquip ex ea commodo consequat. Duis aute irure dolor in </textarea>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="overflow-hidden mb-5">
+                    <label for="editEvent1Img" class="form-label">Event Image</label>
+                    <img src="img/events-1.jpg" class="img-fluid w-100" alt="" id="editEvent1Img">
+                    <label for="editEvent1ImgSrc" class="form-label">Event Image URL</label>
+                    <input type="text" class="form-control mt-2" id="editEvent1ImgSrc" value="img/events-1.jpg" placeholder="Event Image URL">
+                    <div class="mb-2">
+                        <label for="event1-image" class="form-label">Change Event Image</label>
+                        <input type="file" class="form-control event-image-input" id="event1-image">
+                        <div class="mt-2 event-image-preview">
+                        <img src="" class="preview-image d-none" alt="event image preview">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <button class="btn btn-sm btn-outline-primary mt-3" id="add-featured-event">
+                <i class="fas fa-plus me-1"></i> Add Event
+            </button>
+            
+            <button class="btn btn-sm btn-outline-danger delete-event-btn" type="button">
+                <i class="fas fa-trash-alt me-1"></i> Delete Event
+            </button>
+
+            </div>
+            </div>
+            <script>
+            // Helper to create a new event item
+            function createEventItem(eventNum) {
+                const row = document.createElement('div');
+                row.className = 'row g-4 event-item wow fadeIn';
+                row.setAttribute('data-wow-delay', '0.1s');
+                row.innerHTML = `
+                <div class="col-3 col-lg-2 pe-0">
+                    <div class="text-center border-bottom border-dark py-3 px-2">
+                    <label for="editEvent${eventNum}Date" class="form-label">Edit date</label>
+                    <input type="text" class="form-control mb-1" id="editEvent${eventNum}Date" value="">
+                    <label for="editEvent${eventNum}Time" class="form-label">Edit time</label>
+                    <input type="text" class="form-control" id="editEvent${eventNum}Time" value="">
+                    </div>
+                </div>
+                <div class="col-9 col-lg-6 border-start border-dark pb-5">
+                    <div class="ms-3">
+                    <label for="editEvent${eventNum}Title" class="form-label">Theme of the Event</label>
+                    <input type="text" class="form-control mb-3 fw-bold" id="editEvent${eventNum}Title" value="">
+                    <label for="editEvent${eventNum}Desc" class="form-label">Event Details</label>
+                    <textarea class="form-control mb-4" id="editEvent${eventNum}Desc" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="overflow-hidden mb-5">
+                    <label for="editEvent${eventNum}Img" class="form-label">Event Image</label>
+                    <img src="" class="img-fluid w-100" alt="" id="editEvent${eventNum}Img">
+                    <label for="editEvent${eventNum}ImgSrc" class="form-label">Event Image URL</label>
+                    <input type="text" class="form-control mt-2" id="editEvent${eventNum}ImgSrc" value="" placeholder="Event Image URL">
+                    <div class="mb-2">
+                        <label for="event${eventNum}-image" class="form-label">Change Event Image</label>
+                        <input type="file" class="form-control event-image-input" id="event${eventNum}-image">
+                        <div class="mt-2 event-image-preview">
+                        <img src="" class="preview-image d-none" alt="event image preview">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                `;
+                return row;
+            }
+
+            // Add event button logic
+            document.addEventListener('DOMContentLoaded', function () {
+                let eventCount = document.querySelectorAll('#events-list .event-item').length;
+                document.getElementById('add-featured-event').addEventListener('click', function () {
+                    eventCount++;
+                    const newEvent = createEventItem(eventCount);
+                    document.getElementById('events-list').appendChild(newEvent);
+                    attachImageInputHandler(newEvent, eventCount);
+                });
+
+                // Attach image input handler for the initial event
+                attachImageInputHandler(document.querySelector('#events-list .event-item'), 1);
+
+                // Delete last event button logic
+                document.querySelector('.delete-event-btn').addEventListener('click', function () {
+                    const eventsList = document.getElementById('events-list');
+                    const eventItems = eventsList.querySelectorAll('.event-item');
+                    if (eventItems.length > 0) {
+                        eventsList.removeChild(eventItems[eventItems.length - 1]);
+                    }
+                });
+            });
+
+            // Image preview and input handler
+            function attachImageInputHandler(eventRow, eventNum) {
+                const imgInput = eventRow.querySelector(`#event${eventNum}-image`);
+                const imgPreview = eventRow.querySelector('.event-image-preview img');
+                const imgTag = eventRow.querySelector(`#editEvent${eventNum}Img`);
+                const imgSrcInput = eventRow.querySelector(`#editEvent${eventNum}ImgSrc`);
+
+                if (imgInput) {
+                    imgInput.addEventListener('change', function (e) {
+                        const file = e.target.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = function (ev) {
+                                imgPreview.src = ev.target.result;
+                                imgPreview.classList.remove('d-none');
+                                imgTag.src = ev.target.result;
+                                imgSrcInput.value = '';
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                }
+
+                if (imgSrcInput) {
+                    imgSrcInput.addEventListener('input', function () {
+                        imgTag.src = imgSrcInput.value;
+                        imgPreview.classList.add('d-none');
+                    });
+                }
+            }
+        </script>
+
+            </div>
+        </div> 
+        <!-- Events End -->
+
+
+        <!-- Sermon Start -->
+        <div class="container-fluid sermon py-5">
+            <h2 class="text-center">Edit Sermons Section</h2>
+            <div class="container py-5">
+                <div class="text-center mx-auto mb-5 wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
+                    <input type="text" class="form-control mb-2 text-uppercase text-primary fs-5" id="editSermonSectionTitle" value="Sermons">
+                    <input type="text" class="form-control display-3 fw-bold" id="editSermonSectionSubtitle" value="Join The Anglican Community">
+                </div>
+                <div class="row g-4 justify-content-center">
+                    <!-- Sermon 1 -->
+                    <div class="col-lg-6 col-xl-4">
+                        <div class="sermon-item wow fadeIn" data-wow-delay="0.1s">
+                            <div class="overflow-hidden p-4 pb-0">
+                                <img src="img/sermon-1.jpg" class="img-fluid w-100" alt="" id="editSermon1Img">
+                                <input type="text" class="form-control mt-2" id="editSermon1ImgSrc" value="img/sermon-1.jpg" placeholder="Sermon Image URL">
+                            </div>
+                            <div class="p-4">
+                                <div class="sermon-meta d-flex justify-content-between pb-2">
+                                    <div>
+                                        <input type="text" class="form-control mb-1" id="editSermon1Date" value="13 Nov 2023">
+                                        <input type="text" class="form-control" id="editSermon1Author" value="Admin">
+                                    </div>
+                                    <div>
+                                        <input type="text" class="form-control mb-1" id="editSermon1Links" value="Video, Audio, Text, Image">
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control fw-bold mb-3" id="editSermon1Title" value="The Awe of God">
+                                <textarea class="form-control" id="editSermon1Desc" rows="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+                                                                    aliquip ex ea commodo consequat.</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sermon 2 -->
+                    <div class="col-lg-6 col-xl-4">
+                        <div class="sermon-item wow fadeIn" data-wow-delay="0.3s">
+                            <div class="overflow-hidden p-4 pb-0">
+                                <img src="img/sermon-2.jpg" class="img-fluid w-100" alt="" id="editSermon2Img">
+                                <input type="text" class="form-control mt-2" id="editSermon2ImgSrc" value="img/sermon-2.jpg" placeholder="Sermon Image URL">
+                            </div>
+                            <div class="p-4">
+                                <div class="sermon-meta d-flex justify-content-between pb-2">
+                                    <div>
+                                        <input type="text" class="form-control mb-1" id="editSermon2Date" value="13 Nov 2023">
+                                        <input type="text" class="form-control" id="editSermon2Author" value="Admin">
+                                    </div>
+                                    <div>
+                                        <input type="text" class="form-control mb-1" id="editSermon2Links" value="Video, Audio, Text, Image">
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control fw-bold mb-3" id="editSermon2Title" value="The Redemption of Christ">
+                                <textarea class="form-control" id="editSermon2Desc" rows="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+                                                                                                aliquip ex ea commodo consequat.</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sermon 3 -->
+                    <div class="col-lg-6 col-xl-4">
+                        <div class="sermon-item wow fadeIn" data-wow-delay="0.5s">
+                            <div class="overflow-hidden p-4 pb-0">
+                                <img src="img/sermon-3.jpg" class="img-fluid w-100" alt="" id="editSermon3Img">
+                                <input type="text" class="form-control mt-2" id="editSermon3ImgSrc" value="img/sermon-3.jpg" placeholder="Sermon Image URL">
+                            </div>
+                            <div class="p-4">
+                                <div class="sermon-meta d-flex justify-content-between pb-2">
+                                    <div>
+                                        <input type="text" class="form-control mb-1" id="editSermon3Date" value="13 Nov 2023">
+                                        <input type="text" class="form-control" id="editSermon3Author" value="Admin">
+                                    </div>
+                                    <div>
+                                        <input type="text" class="form-control mb-1" id="editSermon3Links" value="Video, Audio, Text, Image">
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control fw-bold mb-3" id="editSermon3Title" value="The Fellowship of The Holy Spirit">
+                                <textarea class="form-control" id="editSermon3Desc" rows="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+                                                                                                aliquip ex ea commodo consequat.</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sermon End -->
+
+
+        <!-- Blog Start -->
+        <div class="container-fluid py-5">
+            <h2 class="text-center">Edit Blog Section</h2>
+            <div class="container py-5">
+            <h1 class="display-3 mb-5 wow fadeIn" data-wow-delay="0.1s">
+                <input type="text" class="form-control d-inline w-auto" id="editBlogTitle" value="Latest From">
+                <span class="text-primary">
+                <input type="text" class="form-control d-inline w-auto" id="editBlogTitleHighlight" value="Our Blog">
+                </span>
+            </h1>
+            <div class="row g-4 justify-content-center">
+                <!-- Blog 1 -->
+                <div class="col-lg-6 col-xl-4">
+                <div class="blog-item wow fadeIn" data-wow-delay="0.1s">
+                    <div class="blog-img position-relative overflow-hidden">
+                    <img src="img/blog-1.jpg" class="img-fluid w-100" alt="" id="editBlog1Img">
+                    <input type="text" class="form-control mt-2" id="editBlog1ImgSrc" value="img/blog-1.jpg" placeholder="Blog Image URL">
+                    <div class="mb-2">
+                        <label for="blog1-image" class="form-label">Change Blog Image</label>
+                        <input type="file" class="form-control" id="blog1-image">
+                        <div class="mt-2" id="blog1-image-preview">
+                        <img src="" class="preview-image d-none" alt="blog1 image preview">
+                        </div>
+                    </div>
+                    <input type="text" class="form-control position-absolute top-0 end-0 bg-primary text-white" id="editBlog1Date" value="01 May 2025">
+                    </div>
+                    <div class="p-4">
+                    <input type="text" class="form-control mb-2" id="editBlog1Author" value="By Admin">
+                    <input type="text" class="form-control fw-bold mb-3" id="editBlog1Title" value="Walking by Faith: What Hebrews 11 Teaches Us Today">
+                    <textarea class="form-control mb-4" id="editBlog1Desc" rows="3">The journey of faith is like walking through a thick fog — you may not see what lies ahead, but you trust the One who leads you.</textarea>
+                    <input type="text" class="form-control btn btn-primary px-3" id="editBlog1Btn" value="More Details">
+                    </div>
+                </div>
+                </div>
+                <!-- Blog 2 -->
+                <div class="col-lg-6 col-xl-4">
+                <div class="blog-item wow fadeIn" data-wow-delay="0.3s">
+                    <div class="blog-img position-relative overflow-hidden">
+                    <img src="img/blog-2.jpg" class="img-fluid w-100" alt="" id="editBlog2Img">
+                    <input type="text" class="form-control mt-2" id="editBlog2ImgSrc" value="img/blog-2.jpg" placeholder="Blog Image URL">
+                    <div class="mb-2">
+                        <label for="blog2-image" class="form-label">Change Blog Image</label>
+                        <input type="file" class="form-control" id="blog2-image">
+                        <div class="mt-2" id="blog2-image-preview">
+                        <img src="" class="preview-image d-none" alt="blog2 image preview">
+                        </div>
+                    </div>
+                    <input type="text" class="form-control position-absolute top-0 end-0 bg-primary text-white" id="editBlog2Date" value="11 Jun 2025">
+                    </div>
+                    <div class="p-4">
+                    <input type="text" class="form-control mb-2" id="editBlog2Author" value="By Admin">
+                    <input type="text" class="form-control fw-bold mb-3" id="editBlog2Title" value="The Fruit of the Spirit: Living a Life Led by the Holy Spirit">
+                    <textarea class="form-control mb-4" id="editBlog2Desc" rows="3">When you see a mango tree, you expect to find mangoes. In the same way, when people see a Christian, they should find the fruit of the Spirit — signs that we are living with Jesus and being guided by the Holy Spirit.</textarea>
+                    <input type="text" class="form-control btn btn-primary px-3" id="editBlog2Btn" value="More Details">
+                    </div>
+                </div>
+                </div>
+                <!-- Blog 3 -->
+                <div class="col-lg-6 col-xl-4">
+                <div class="blog-item wow fadeIn" data-wow-delay="0.5s">
+                    <div class="blog-img position-relative overflow-hidden">
+                    <img src="img/blog-3.jpg" class="img-fluid w-100" alt="" id="editBlog3Img">
+                    <input type="text" class="form-control mt-2" id="editBlog3ImgSrc" value="img/blog-3.jpg" placeholder="Blog Image URL">
+                    <div class="mb-2">
+                        <label for="blog3-image" class="form-label">Change Blog Image</label>
+                        <input type="file" class="form-control" id="blog3-image">
+                        <div class="mt-2" id="blog3-image-preview">
+                        <img src="" class="preview-image d-none" alt="blog3 image preview">
+                        </div>
+                    </div>
+                    <input type="text" class="form-control position-absolute top-0 end-0 bg-primary text-white" id="editBlog3Date" value="03 Jul 2025">
+                    </div>
+                    <div class="p-4">
+                    <input type="text" class="form-control mb-2" id="editBlog3Author" value="By Admin">
+                    <input type="text" class="form-control fw-bold mb-3" id="editBlog3Title" value="Be Still and Know: Trusting God in Uncertain Times">
+                    <textarea class="form-control mb-4" id="editBlog3Desc" rows="3">Life often moves fast. News breaks, plans fall apart, bills stack up, and fears whisper. In the middle of all this, God gently says: “Be still.”</textarea>
+                    <input type="text" class="form-control btn btn-primary px-3" id="editBlog3Btn" value="More Details">
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- Blog End -->
+
+
+        <!-- Testimonial Start -->
+        <div class="container-fluid testimonial py-5">
+            <h2 class="text-center">Edit Testimonial Section</h2>
+            <div class="container py-5">
+            <div class="text-center mx-auto mb-5 wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
+                <input type="text" class="form-control mb-2 text-uppercase text-primary fs-5" id="editTestimonialSectionTitle" value="Testimonies">
+                <input type="text" class="form-control display-3 fw-bold" id="editTestimonialSectionSubtitle" value="Some of Our Members' Testimonies">
+            </div>
+            <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay="0.1s">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-item">
+                <div class="d-flex mb-3">
+                    <div class="position-relative">
+                    <img src="img/testimonial-1.jpg" class="img-fluid" alt="" id="editTestimonial1Img">
+                    <input type="text" class="form-control mt-2" id="editTestimonial1ImgSrc" value="img/testimonial-1.jpg" placeholder="Testimonial Image URL">
+                    <div class="mb-2">
+                        <label for="testimonial1-image" class="form-label">Change Testimonial Image</label>
+                        <input type="file" class="form-control" id="testimonial1-image">
+                        <div class="mt-2" id="testimonial1-image-preview">
+                        <img src="" class="preview-image d-none" alt="testimonial1 image preview">
+                        </div>
+                    </div>
+                    <div class="btn-md-square bg-primary rounded-circle position-absolute" style="top: 25px; left: -25px;">
+                        <i class="fa fa-quote-left text-dark"></i>
+                    </div>
+                    </div>
+                    <div class="ps-3 my-auto ">
+                    <input type="text" class="form-control mb-1" id="editTestimonial1Name" value="Mrs Ebipatei Sobijoh">
+                    <input type="text" class="form-control" id="editTestimonial1Role" value="Member">
+                    </div>
+                </div>
+                <div class="testimonial-content">
+                    <div class="d-flex">
+                    <input type="number" class="form-control w-auto" id="editTestimonial1Stars" value="5" min="1" max="5">
+                    <!-- You can use JS to render stars based on value -->
+                    </div>
+                    <textarea class="form-control fs-5 m-0 pt-3" id="editTestimonial1Text" rows="3">She is thanking God for saving and healing her from a fatal home accident that broke her leg and left her unable to walk well for more than 6 months 
+        She is great full to God and wants to use this medium to return all Glory to God</textarea>
+                </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="testimonial-item">
+                <div class="d-flex mb-3">
+                    <div class="position-relative">
+                    <img src="img/testimonial-2.jpg" class="img-fluid" alt="" id="editTestimonial2Img">
+                    <input type="text" class="form-control mt-2" id="editTestimonial2ImgSrc" value="img/testimonial-2.jpg" placeholder="Testimonial Image URL">
+                    <div class="mb-2">
+                        <label for="testimonial2-image" class="form-label">Change Testimonial Image</label>
+                        <input type="file" class="form-control" id="testimonial2-image">
+                        <div class="mt-2" id="testimonial2-image-preview">
+                        <img src="" class="preview-image d-none" alt="testimonial2 image preview">
+                        </div>
+                    </div>
+                    <div class="btn-md-square bg-primary rounded-circle position-absolute" style="top: 25px; left: -25px;">
+                        <i class="fa fa-quote-left text-dark"></i>
+                    </div>
+                    </div>
+                    <div class="ps-3 my-auto ">
+                    <input type="text" class="form-control mb-1" id="editTestimonial2Name" value="Full Name">
+                    <input type="text" class="form-control" id="editTestimonial2Role" value="Profession">
+                    </div>
+                </div>
+                <div class="testimonial-content">
+                    <div class="d-flex">
+                    <input type="number" class="form-control w-auto" id="editTestimonial2Stars" value="5" min="1" max="5">
+                    </div>
+                    <textarea class="form-control fs-5 m-0 pt-3" id="editTestimonial2Text" rows="3">Lorem ipsum dolor sit amet elit, sed do tempor ut labore et dolore magna aliqua. Ut enim ad minim quis.</textarea>
+                </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="testimonial-item">
+                <div class="d-flex mb-3">
+                    <div class="position-relative">
+                    <img src="img/testimonial-3.jpg" class="img-fluid" alt="" id="editTestimonial3Img">
+                    <input type="text" class="form-control mt-2" id="editTestimonial3ImgSrc" value="img/testimonial-3.jpg" placeholder="Testimonial Image URL">
+                    <div class="mb-2">
+                        <label for="testimonial3-image" class="form-label">Change Testimonial Image</label>
+                        <input type="file" class="form-control" id="testimonial3-image">
+                        <div class="mt-2" id="testimonial3-image-preview">
+                        <img src="" class="preview-image d-none" alt="testimonial3 image preview">
+                        </div>
+                    </div>
+                    <div class="btn-md-square bg-primary rounded-circle position-absolute" style="top: 25px; left: -25px;">
+                        <i class="fa fa-quote-left text-dark"></i>
+                    </div>
+                    </div>
+                    <div class="ps-3 my-auto ">
+                    <input type="text" class="form-control mb-1" id="editTestimonial3Name" value="Full Name">
+                    <input type="text" class="form-control" id="editTestimonial3Role" value="Profession">
+                    </div>
+                </div>
+                <div class="testimonial-content">
+                    <div class="d-flex">
+                    <input type="number" class="form-control w-auto" id="editTestimonial3Stars" value="5" min="1" max="5">
+                    </div>
+                    <textarea class="form-control fs-5 m-0 pt-3" id="editTestimonial3Text" rows="3">Lorem ipsum dolor sit amet elit, sed do tempor ut labore et dolore magna aliqua. Ut enim ad minim quis.</textarea>
+                </div>
+                </div>
+                <!-- Testimonial 4 -->
+                <div class="testimonial-item">
+                <div class="d-flex mb-3">
+                    <div class="position-relative">
+                    <img src="img/testimonial-4.jpg" class="img-fluid" alt="" id="editTestimonial4Img">
+                    <input type="text" class="form-control mt-2" id="editTestimonial4ImgSrc" value="img/testimonial-4.jpg" placeholder="Testimonial Image URL">
+                    <div class="mb-2">
+                        <label for="testimonial4-image" class="form-label">Change Testimonial Image</label>
+                        <input type="file" class="form-control" id="testimonial4-image">
+                        <div class="mt-2" id="testimonial4-image-preview">
+                        <img src="" class="preview-image d-none" alt="testimonial4 image preview">
+                        </div>
+                    </div>
+                    <div class="btn-md-square bg-primary rounded-circle position-absolute" style="top: 25px; left: -25px;">
+                        <i class="fa fa-quote-left text-dark"></i>
+                    </div>
+                    </div>
+                    <div class="ps-3 my-auto ">
+                    <input type="text" class="form-control mb-1" id="editTestimonial4Name" value="Full Name">
+                    <input type="text" class="form-control" id="editTestimonial4Role" value="Profession">
+                    </div>
+                </div>
+                <div class="testimonial-content">
+                    <div class="d-flex">
+                    <input type="number" class="form-control w-auto" id="editTestimonial4Stars" value="5" min="1" max="5">
+                    </div>
+                    <textarea class="form-control fs-5 m-0 pt-3" id="editTestimonial4Text" rows="3">Lorem ipsum dolor sit amet elit, sed do tempor ut labore et dolore magna aliqua. Ut enim ad minim quis.</textarea>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- Testimonial End -->
+
+        <script>
+        // Blog image upload preview logic
+        function attachBlogImageInputHandler(blogNum) {
+            const imgInput = document.getElementById(`blog${blogNum}-image`);
+            const imgPreview = document.querySelector(`#blog${blogNum}-image-preview img`);
+            const imgTag = document.getElementById(`editBlog${blogNum}Img`);
+            const imgSrcInput = document.getElementById(`editBlog${blogNum}ImgSrc`);
+            if (imgInput) {
+            imgInput.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                const reader = new FileReader();
+                reader.onload = function (ev) {
+                    imgPreview.src = ev.target.result;
+                    imgPreview.classList.remove('d-none');
+                    imgTag.src = ev.target.result;
+                    imgSrcInput.value = '';
+                };
+                reader.readAsDataURL(file);
+                }
+            });
+            }
+            if (imgSrcInput) {
+            imgSrcInput.addEventListener('input', function () {
+                imgTag.src = imgSrcInput.value;
+                imgPreview.classList.add('d-none');
+            });
+            }
+        }
+        // Testimonial image upload preview logic
+        function attachTestimonialImageInputHandler(testNum) {
+            const imgInput = document.getElementById(`testimonial${testNum}-image`);
+            const imgPreview = document.querySelector(`#testimonial${testNum}-image-preview img`);
+            const imgTag = document.getElementById(`editTestimonial${testNum}Img`);
+            const imgSrcInput = document.getElementById(`editTestimonial${testNum}ImgSrc`);
+            if (imgInput) {
+            imgInput.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                const reader = new FileReader();
+                reader.onload = function (ev) {
+                    imgPreview.src = ev.target.result;
+                    imgPreview.classList.remove('d-none');
+                    imgTag.src = ev.target.result;
+                    imgSrcInput.value = '';
+                };
+                reader.readAsDataURL(file);
+                }
+            });
+            }
+            if (imgSrcInput) {
+            imgSrcInput.addEventListener('input', function () {
+                imgTag.src = imgSrcInput.value;
+                imgPreview.classList.add('d-none');
+            });
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            // Blog images
+            attachBlogImageInputHandler(1);
+            attachBlogImageInputHandler(2);
+            attachBlogImageInputHandler(3);
+            // Testimonial images
+            attachTestimonialImageInputHandler(1);
+            attachTestimonialImageInputHandler(2);
+            attachTestimonialImageInputHandler(3);
+            attachTestimonialImageInputHandler(4);
+        });
+        </script>
+
+
+        <!-- Footer Start -->
+        <div class="container-fluid footer pt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5">
+                <div class="row py-5">
+                <div class="row g-4 footer-inner">
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item mt-5">
+                            <input type="text" class="form-control text-light mb-4 fw-bold" id="editFooterChurchName" value="Holy Trinity Anglican Church,Ijede, Lagos.">
+                            <textarea class="form-control mb-4 text-secondary" id="editFooterChurchDesc" rows="3">Nostrud exertation ullamco labor nisi aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item mt-5">
+                            <input type="text" class="form-control text-light mb-4 fw-bold" id="editFooterAddressTitle" value="Holy Trinity Anglican Church, Ijede, Lagos.">
+                            <div class="d-flex flex-column"></div>
+                                <input type="text" class="form-control mb-0" id="editFooterAddressLabel" value="Our Address">
+                                <div class="d-flex align-items-center border-bottom py-4">
+                                    <span class="flex-shrink-0 btn-square bg-primary me-3 p-4"><i class="fa fa-map-marker-alt text-dark"></i></span>
+                                    <input type="text" class="form-control" id="editFooterAddress" value="2 ,Egbin Road, Ijede ,Ikoroudu,Lagos State,Nigeria">
+                                </div>
+                                <input type="text" class="form-control mt-4 mb-0" id="editFooterMobileLabel" value="Our Mobile">
+                                <div class="d-flex align-items-center py-4">
+                                    <span class="flex-shrink-0 btn-square bg-primary me-3 p-4"><i class="fa fa-phone-alt text-dark"></i></span>
+                                    <input type="text" class="form-control" id="editFooterMobile" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item mt-5">
+                            <input type="text" class="form-control text-light mb-4 fw-bold" id="editFooterLinksTitle" value="Explore Link">
+                            <div class="d-flex flex-column align-items-start">
+                                <input type="text" class="form-control mb-2" value="Home" id="editFooterLink1">
+                                <input type="text" class="form-control mb-2" value="About Us" id="editFooterLink2">
+                                <input type="text" class="form-control mb-2" value="Our Features" id="editFooterLink3">
+                                <input type="text" class="form-control mb-2" value="Contact us" id="editFooterLink4">
+                                <input type="text" class="form-control mb-2" value="Our Blog" id="editFooterLink5">
+                                <input type="text" class="form-control mb-2" value="Our Events" id="editFooterLink6">
+                                <input type="text" class="form-control mb-2" value="Donations" id="editFooterLink7">
+                                <input type="text" class="form-control mb-2" value="Sermons" id="editFooterLink8">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item mt-5">
+                            <input type="text" class="form-control text-light mb-4 fw-bold" id="editFooterLatestPostTitle" value="Latest Post">
+                            <div class="d-flex border-bottom border-secondary py-4">
+                                <img src="img/blog-mini-1.jpg" class="img-fluid flex-shrink-0" alt="" id="editFooterLatestPost1Img">
+                                <input type="text" class="form-control mt-2" id="editFooterLatestPost1ImgSrc" value="img/blog-mini-1.jpg" placeholder="Latest Post Image URL">
+                                <div class="ps-3">
+                                    <input type="text" class="form-control mb-0 text-muted" id="editFooterLatestPost1Date" value="01 Jan 2025">
+                                    <input type="text" class="form-control" id="editFooterLatestPost1Title" value="Lorem ipsum dolor sit amet elit eros vel">
+                                </div>
+                            </div>
+                            <div class="d-flex py-4">
+                                <img src="img/blog-mini-2.jpg" class="img-fluid flex-shrink-0" alt="" id="editFooterLatestPost2Img">
+                                <input type="text" class="form-control mt-2" id="editFooterLatestPost2ImgSrc" value="img/blog-mini-2.jpg" placeholder="Latest Post Image URL">
+                                <div class="ps-3">
+                                    <input type="text" class="form-control mb-0 text-muted" id="editFooterLatestPost2Date" value="01 Jan 2025">
+                                    <input type="text" class="form-control" id="editFooterLatestPost2Title" value="Lorem ipsum dolor sit amet elit eros vel">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container text-center my-5">
+            <button id="saveChangesBtn" class="btn btn-lg btn-success">Save Changes</button>
+        </div>
+            <div id="saveMsg" class="mt-3 text-success" style="display:none;">Changes saved!</div>
+            <script>
+            // Collect all editable input values
+            function collectFormData() {
+                const data = {};
+                // Get all inputs and textareas with id starting with 'edit'
+                document.querySelectorAll('input[id^="edit"], textarea[id^="edit"]').forEach(el => {
+                    data[el.id] = el.value;
+                });
+                // Optionally, collect file/image data if needed
+                return data;
+            }
+
+            document.getElementById('saveChangesBtn').addEventListener('click', function () {
+                const formData = collectFormData();
+                fetch('/api/save-admin-content', { // Change to your backend endpoint
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(res => {
+                    if (res.ok) {
+                        document.getElementById('saveMsg').style.display = 'block';
+                        setTimeout(() => {
+                            document.getElementById('saveMsg').style.display = 'none';
+                        }, 2000);
+                    } else {
+                        alert('Failed to save changes.');
+                    }
+                })
+                .catch(() => alert('Error saving changes.'));
+            });
+            </script>
+
+        <!-- Footer End -->
+            <div class="container py-4">
+                <div class="border-top border-secondary pb-4"></div>
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">Holy Trinity Anglican Church ,Ijede, Lagos.</a>, All Right Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="indexAdmin.js"></script>
+</body>
+</html>

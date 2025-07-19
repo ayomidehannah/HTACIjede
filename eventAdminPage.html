@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      Admin - Edit Events | Holy Trinity Anglican Church Ijede, Lagos
+    </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: #f8fafc;
+        font-family: "Open Sans", sans-serif;
+      }
+      .admin-header {
+        font-family: "Pacifico", cursive;
+        color: #0d6efd;
+      }
+      .form-label {
+        font-weight: 600;
+      }
+      .event-img-preview {
+        max-width: 200px;
+        max-height: 120px;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container py-5">
+      <h1 class="admin-header text-center mb-4">Edit Events Page Content</h1>
+      <form id="eventEditForm">
+        <div class="mb-4">
+          <label for="pageTitle" class="form-label">Page Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="pageTitle"
+            value="Upcoming Events"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="eventTitle" class="form-label">Event Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="eventTitle"
+            value="135th Year Anniversary"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="eventDate" class="form-label">Event Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="eventDate"
+            value="2025-05-25"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="eventTime" class="form-label">Event Time</label>
+          <input
+            type="text"
+            class="form-control"
+            id="eventTime"
+            value="Sun 08:00"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="eventDescription" class="form-label"
+            >Event Description</label
+          >
+          <textarea class="form-control" id="eventDescription" rows="5">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in</textarea
+          >
+        </div>
+        <div class="mb-4">
+          <label for="eventImage" class="form-label">Event Image</label>
+          <input
+            class="form-control"
+            type="file"
+            id="eventImage"
+            accept="image/*"
+          />
+          <img
+            id="imgPreview"
+            src="img/adultHarvest.jpg"
+            alt="Event Image"
+            class="event-img-preview mt-2 d-block"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary px-5 py-2 fw-bold">
+          Save Changes
+        </button>
+      </form>
+      <div id="saveMsg" class="alert alert-success mt-4 d-none" role="alert">
+        Changes saved! (This is a demo. No real backend update.)
+      </div>
+    </div>
+    <script>
+      // Image preview
+      document
+        .getElementById("eventImage")
+        .addEventListener("change", function (e) {
+          const [file] = e.target.files;
+          if (file) {
+            document.getElementById("imgPreview").src =
+              URL.createObjectURL(file);
+          }
+        });
+
+      // Demo save handler
+      document
+        .getElementById("eventEditForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          document.getElementById("saveMsg").classList.remove("d-none");
+          setTimeout(() => {
+            document.getElementById("saveMsg").classList.add("d-none");
+          }, 2500);
+        });
+    </script>
+  </body>
+</html>
