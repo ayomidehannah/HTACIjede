@@ -276,10 +276,11 @@
 		 //create a card div for the additional detail
 		 const cardDiv= document.createElement('div');
 		 cardDiv.classList.add('card', 'mb-4');
-		 cardDiv.id=`additionalDetails${count}`
+		 cardDiv.id=`additionalDetails${count}`;
 		 let id=`cardDetails${count}`
 		 cardDiv.innerHTML= '<div class="card-header"><button>Remove content</button></div><div class="card-body"> </div>';
 		cardDiv.children[1].id=id;
+		cardDiv.children[0].children[0].id=`additionalContentButton${count}`;
 		
 	//append card to the display 
   document.getElementById('additionalDetailsBody').appendChild(cardDiv);
@@ -288,6 +289,17 @@
   document.getElementById(id).appendChild(inputDiv);
   document.getElementById(id).appendChild(textAreaDiv);
  
+ //set up action listener to delete addtional card
+
+ document.getElementById(`additionalContentButton${count}`).addEventListener('click', function(event) {
+  event.preventDefault(); 
+  const childElement = event.target;
+  
+  const parentElement = childElement.parentNode;
+        const grandparentElement = parentElement.parentNode;
+		 grandparentElement.parentNode.removeChild(grandparentElement);
+  
+  })
  
   
   count++;
