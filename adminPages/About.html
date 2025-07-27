@@ -236,37 +236,59 @@
 	  let count=0;
 	document.getElementById('additionalDetails').addEventListener('click', function(event) {
   event.preventDefault(); 
-
+  // create a div for the inpul label and input field
+  const inputDiv = document.createElement('div');
+  inputDiv.className = 'mb-3';
+ 
+ // create a label for the input field
+		const label =document.createElement('label');
+		label.textContent ="Content Title";
+		label.classList.add('form-label');
+		 
+// create an input field
   const inputField = document.createElement("input");
 	   inputField.setAttribute("type", "text");
-	  
+	 inputField.classList.add('form-control');
 		
-		const inputDiv = document.createElement('div');
-		const label =document.createElement('label');
-		label.textContent ="Content Title"
-		 inputDiv.className = 'mb-3';
+		 //add label and input field to the input div
 		 inputDiv.appendChild(label);
 		 inputDiv.appendChild(inputField);
+	
+	
+		// create a div for the label and text area field
+		const textAreaDiv = document.createElement('div');
+		textAreaDiv.className = 'mb-3';
 		
+		// create a text area field
 	const textareaElement = document.createElement("textarea");
 	 textareaElement.setAttribute("rows", "3");
-		
-		const textAreaDiv = document.createElement('div');
+	 textareaElement.classList.add('form-control');
+	
+		// create a label for the text area field
 		const label2 =document.createElement('label');
 		label2.textContent ="Content Details"
-		 textAreaDiv.className = 'mb-3';
+		
+		
+		 // add text area label and text area to the text area div
 		 textAreaDiv.appendChild(label2);
 		 textAreaDiv.appendChild(textareaElement);
 		 
+		 //create a card div for the additional detail
 		 const cardDiv= document.createElement('div');
+		 cardDiv.classList.add('card', 'mb-4');
+		 cardDiv.id=`additionalDetails${count}`
 		 let id=`cardDetails${count}`
 		 cardDiv.innerHTML= '<div class="card-header"><button>Remove content</button></div><div class="card-body"> </div>';
 		cardDiv.children[1].id=id;
 		
-  // Append to the display area
-   document.getElementById('additionalDetailsBody').appendChild(cardDiv);
-  document.getElementById(id).appendChild(inputDiv)
+	//append card to the display 
+  document.getElementById('additionalDetailsBody').appendChild(cardDiv);
+		
+  // Append input and text area to the body of card
+  document.getElementById(id).appendChild(inputDiv);
   document.getElementById(id).appendChild(textAreaDiv);
+ 
+ 
   
   count++;
   });
