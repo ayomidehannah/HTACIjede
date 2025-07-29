@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      Holy Trinity Anglican Church, Ijede Website - About Us & School
+    </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Extra padding bottom inside modal body so buttons are not crowded */
+      .modal-body {
+        padding-bottom: 4rem !important;
+      }
+    </style>
+  </head>
+
+  <body class="bg-light">
+    <div class="container py-5" id="mainContent">
+      <!-- Heading -->
+      <h1 class="display-3 text-center mb-5" style="font-weight: 700">
+        <span class="text-primary">Edit or Add to About Us</span>
+      </h1>
+
+      <!-- Sections container -->
+      <div id="sectionsContainer">
+        <!-- Sections will be rendered here dynamically -->
+      </div>
+
+      <!-- Add New Section Button -->
+      <div class="text-center mt-5">
+        <button class="btn btn-success btn-lg" id="btn-add-section">
+          <i class="fa fa-plus me-2"></i> Add New Section
+        </button>
+      </div>
+    </div>
+
+    <!-- Modals -->
+    <div
+      class="modal fade"
+      id="modalSection"
+      tabindex="-1"
+      aria-labelledby="modalSectionLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <form id="formSection">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalSectionLabel">Edit Section</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <label class="form-label">Section Title</label>
+              <textarea
+                class="form-control"
+                name="title"
+                rows="2"
+                placeholder="Use line breaks for new lines"
+              ></textarea>
+
+              <label class="form-label mt-3">Heading</label>
+              <input type="text" class="form-control" name="heading" />
+
+              <label class="form-label mt-3">Main Text Content</label>
+              <textarea
+                class="form-control"
+                name="content"
+                rows="5"
+                placeholder="You can write paragraphs or list items (one per line)."
+              ></textarea>
+
+              <label class="form-label mt-3"
+                >Quote / Highlight (Optional)</label
+              >
+              <input type="text" class="form-control" name="quote" />
+
+              <label class="form-label mt-3">Images</label>
+              <div id="section-image-upload" class="mb-3">
+                <input
+                  type="file"
+                  id="sectionImageInput"
+                  accept="image/*"
+                  multiple
+                  class="form-control mb-2"
+                />
+                <div
+                  id="sectionImagePreview"
+                  class="d-flex flex-wrap gap-2"
+                ></div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">
+                Save Changes
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle (with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Admin check (replace with real auth)
+      const isAdmin = true;
+
+      // Placeholder dummy images URLs for preview (public domain or placeholder pics)
+      const dummyImages = [
+        "https://via.placeholder.com/400x250?text=Image+1",
+        "https://via.placeholder.com/400x250?text=Image+2",
+        "https://via.placeholder.com/400x250?text=Image+3",
+      ];
+
+      // Sections data array: each section is an object with a unique id and data
+      let sectionsData = [
+        {
+          id: "about",
+          title:
+            "About HOLY TRINITY ANGLICAN CHURCH <br> IJEDE, IKOROUDU ,LAGOS STATE",
+          heading: "Christ For All Nations",
+          content:
+            "Our Vision:\nTo be the leading Diocese in the Church of Nigeria in preparing this Nation for the second coming of our Lord Jesus Christ.\n\nOur Mission:\n- To ensure a sustained growth in the number of churches and worshippers within the Diocese.\n- To continue to enhance the mode of worship, teach and preach the word of God in all our churches thereby creating worshippers fit for the kingdom of God.\n- To assist every member in the understanding and practice of the 39 Articles of our faith.\n- To develop and inspire in every Church the principle of self-sufficiency and Christian generosity, thereby ensuring a strong and viable Diocese.\n- To continue to promote peaceful and cordial relationship with other Dioceses in order to ensure the success of our common commitment.",
+          quote: "Tell The Story, Keep The Faith !!!",
+          images: [...dummyImages],
+        },
+        {
+          id: "school",
+          title: "Bisi Olaleye Anglican Nursery and Primary School",
+          heading: "Our School",
+          content:
+            "Bisi Olaleye Anglican Nursery and Primary School is a Christian mission school established by the church to provide quality education based on Christian values.\n\nFeatures:\n- Qualified teachers\n- Safe and nurturing environment\n- Modern teaching aids\n- Strong academic curriculum\n\nThe school is committed to developing the full potential of each child in a supportive and loving environment.",
+          quote: "",
+          images: [...dummyImages],
+        },
+      ];
+
+      // Unique id generator for new sections
+      function generateId() {
+        return "sec-" + Math.random().toString(36).substr(2, 9);
+      }
+
+      // Store current editing section id and image files array
+      let currentEditingSectionId = null;
+      let currentImageFiles = [];
+
+      // Helper: Render one section inside container
+      function renderSection(section) {
+        const container = document.createElement("section");
+        container.className = "mb-5";
+        container.id = `section-${section.id}`;
+
+        // Split content into paragraphs & lists
+        // We'll parse the content text into HTML with some simple rules:
+        // Lines starting with "- " or "* " are list items, blank line separates paragraphs
+
+        function parseContent(text) {
+          const lines = text.split("\n");
+          let html = "";
+          let inList = false;
+
+          lines.forEach((line) => {
+            line = line.trim();
+            if (line === "") {
+              if (inList) {
+                html += "</ul>";
+                inList = false;
+              }
+              html += "<p></p>";
+            } else if (line.startsWith("- ") || line.startsWith("* ")) {
+              if (!inList) {
+                html += "<ul>";
+                inList = true;
+              }
+              html += `<li>${line.slice(2)}</li>`;
+            } else if (line.match(/^Our Vision:$/i)) {
+              if (inList) {
+                html += "</ul>";
+                inList = false;
+              }
+              html += `<h5>${line}</h5>`;
+            } else if (line.match(/^Our Mission:$/i)) {
+              if (inList) {
+                html += "</ul>";
+                inList = false;
+              }
+              html += `<h5>${line}</h5>`;
+            } else if (line.match(/^Features:$/i)) {
+              if (inList) {
+                html += "</ul>";
+                inList = false;
+              }
+              html += `<h5>${line}</h5>`;
+            } else {
+              if (inList) {
+                html += "</ul>";
+                inList = false;
+              }
+              html += `<p>${line}</p>`;
+            }
+          });
+
+          if (inList) {
+            html += "</ul>";
+            inList = false;
+          }
+          return html;
+        }
+
+        container.innerHTML = `
+        <div class="row g-5 align-items-center">
+          <div id="images-${section.id}" class="col-xl-6 row g-3">
+            ${section.images
+              .map(
+                (src) => `
+              <div class="col-6 col-md-4">
+                <img src="${src}" alt="Section Image" class="img-fluid rounded shadow-sm" style="height:180px; object-fit:cover;" />
+              </div>
+            `
+              )
+              .join("")}
+          </div>
+          <div class="col-xl-6">
+            <p class="fs-5 text-uppercase text-primary">${section.title}</p>
+            <h1 class="display-5 mb-4">${section.heading}</h1>
+            <div class="mb-4 content-area">${parseContent(
+              section.content
+            )}</div>
+            ${
+              section.quote
+                ? `<div class="bg-primary text-white text-center py-4 rounded">
+                  <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center gap-4">
+                    <i class="fa fa-church fa-4x"></i>
+                    <h3 class="mb-0">${section.quote}</h3>
+                  </div>
+                </div>`
+                : ""
+            }
+          </div>
+        </div>
+        ${
+          isAdmin
+            ? `<div class="text-center mt-4 d-flex justify-content-center gap-3">
+        <button class="btn btn-warning btn-edit-section" data-id="${section.id}">
+          <i class="fa fa-edit me-2"></i>Edit Section
+        </button>
+        <button class="btn btn-danger btn-delete-section" data-id="${section.id}">
+          <i class="fa fa-trash me-2"></i>Delete Section
+        </button>
+      </div>`
+            : ""
+        }
+      `;
+
+        return container;
+      }
+
+      // Render all sections to page
+      function renderAllSections() {
+        const container = document.getElementById("sectionsContainer");
+        container.innerHTML = "";
+        sectionsData.forEach((section) => {
+          container.appendChild(renderSection(section));
+        });
+        attachEditButtonsListeners();
+        attachDeleteButtonsListeners();
+      }
+
+      // Attach listeners to edit buttons after rendering
+      function attachEditButtonsListeners() {
+        document.querySelectorAll(".btn-edit-section").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const id = e.currentTarget.getAttribute("data-id");
+            openModalSection(id);
+          });
+        });
+      }
+
+      // Open modal for editing section with given id
+      function openModalSection(id) {
+        currentEditingSectionId = id;
+        const section = sectionsData.find((s) => s.id === id);
+
+        const form = document.forms["formSection"];
+        form.title.value = section.title.replace(/<br>/g, "\n");
+        form.heading.value = section.heading;
+        form.content.value = section.content;
+        form.quote.value = section.quote;
+
+        // Setup images preview
+        currentImageFiles = [...section.images];
+        renderImagesPreview("sectionImagePreview", currentImageFiles);
+
+        const modal = new bootstrap.Modal(
+          document.getElementById("modalSection")
+        );
+        modal.show();
+      }
+
+      // Render image previews with remove buttons
+      function renderImagesPreview(containerId, imagesArray) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = "";
+        imagesArray.forEach((src, idx) => {
+          const div = document.createElement("div");
+          div.className = "position-relative";
+          div.style.width = "150px";
+
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = "";
+          img.className = "img-fluid rounded";
+          img.style.maxHeight = "100px";
+          img.style.objectFit = "cover";
+          div.appendChild(img);
+
+          // Remove button overlay
+          const btnRemove = document.createElement("button");
+          btnRemove.type = "button";
+          btnRemove.className =
+            "btn btn-sm btn-danger position-absolute top-0 end-0";
+          btnRemove.innerHTML = "&times;";
+          btnRemove.style.zIndex = "10";
+          btnRemove.addEventListener("click", () => {
+            currentImageFiles.splice(idx, 1);
+            renderImagesPreview(containerId, currentImageFiles);
+          });
+          div.appendChild(btnRemove);
+
+          container.appendChild(div);
+        });
+      }
+
+      // Delete section handler
+      function attachDeleteButtonsListeners() {
+        document.querySelectorAll(".btn-delete-section").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const id = e.currentTarget.getAttribute("data-id");
+            if (
+              confirm(
+                "Are you sure you want to delete this section? This action cannot be undone."
+              )
+            ) {
+              // Remove section from array
+              sectionsData = sectionsData.filter((s) => s.id !== id);
+              renderAllSections();
+            }
+          });
+        });
+      }
+
+      // Image input change handler
+      document
+        .getElementById("sectionImageInput")
+        .addEventListener("change", (e) => {
+          const files = Array.from(e.target.files);
+          files.forEach((file) => {
+            const url = URL.createObjectURL(file);
+            currentImageFiles.push(url);
+          });
+          renderImagesPreview("sectionImagePreview", currentImageFiles);
+          e.target.value = "";
+        });
+
+      // Save changes handler for modal form
+      document.getElementById("formSection").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const section = sectionsData.find(
+          (s) => s.id === currentEditingSectionId
+        );
+
+        section.title = form.title.value.trim().replace(/\n/g, "<br>");
+        section.heading = form.heading.value.trim();
+        section.content = form.content.value.trim();
+        section.quote = form.quote.value.trim();
+
+        // Update images URLs - here only strings kept for demo
+        section.images = currentImageFiles.filter((f) => typeof f === "string");
+
+        renderAllSections();
+
+        bootstrap.Modal.getInstance(
+          document.getElementById("modalSection")
+        ).hide();
+        alert("Section updated (demo only). Implement backend save.");
+      });
+
+      // Add new section button listener
+      document
+        .getElementById("btn-add-section")
+        .addEventListener("click", () => {
+          const newId = generateId();
+          const newSection = {
+            id: newId,
+            title: "New Section Title",
+            heading: "New Heading",
+            content: "Write content here...\n- List item 1\n- List item 2",
+            quote: "",
+            images: [...dummyImages],
+          };
+          sectionsData.push(newSection);
+          renderAllSections();
+          openModalSection(newId);
+        });
+
+      // Initial render
+      renderAllSections();
+    </script>
+  </body>
+</html>
