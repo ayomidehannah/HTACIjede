@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sermon Admin - Holy Trinity Anglican Church</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <h2 class="text-primary">Edit or Add Sermons Below</h2>
+      </div>
+
+      <div id="sermon-list" class="row g-4 justify-content-center"></div>
+
+      <div class="text-center mt-4">
+        <button class="btn btn-outline-primary me-2" onclick="addSermon()">
+          <i class="fas fa-plus-circle me-1"></i> Add New Sermon
+        </button>
+        <button class="btn btn-success" onclick="saveSermons()">
+          <i class="fas fa-save me-1"></i> Save Changes
+        </button>
+      </div>
+    </div>
+
+    <!-- FontAwesome for icons -->
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Admin Sermon Script -->
+    <script>
+      let sermons = [
+        {
+          title: "The Awe of God",
+          date: "2025-04-27",
+          image: "img/Awe of God.jpeg",
+          description: "Lorem ipsum dolor sit amet...",
+        },
+        {
+          title: "The Redemption of Christ",
+          date: "2025-05-04",
+          image: "img/Redemption.jpeg",
+          description: "Lorem ipsum dolor sit amet...",
+        },
+        {
+          title: "The Fellowship of The Holy Spirit",
+          date: "2025-05-11",
+          image: "img/Fellowship.jpeg",
+          description: "Lorem ipsum dolor sit amet...",
+        },
+      ];
+
+      function renderSermons() {
+        const container = document.getElementById("sermon-list");
+        container.innerHTML = "";
+        sermons.forEach((sermon, index) => {
+          container.innerHTML += `
+        <div class="col-md-6 col-lg-4">
+          <div class="border rounded p-3 shadow-sm">
+            <div class="mb-3">
+              <label class="form-label fw-bold">Upload Image:</label>
+              <input type="file" class="form-control mb-2" accept="image/*" onchange="handleImageUpload(event, ${index})">
+              ${
+                sermon.image
+                  ? `
+                <img src="${sermon.image}" class="img-fluid rounded mb-2" style="max-height:200px;" />
+                <div class="d-flex gap-2">
+                  <button class="btn btn-sm btn-outline-secondary" onclick="triggerImageChange(${index})">Change</button>
+                  <button class="btn btn-sm btn-outline-danger" onclick="removeImage(${index})">Remove</button>
+                </div>
+              `
+                  : `<small class="text-muted">No image uploaded</small>`
+              }
+            </div>
+            <div class="mb-2">
+              <label class="form-label fw-bold">Sermon Title:</label>
+              <input type="text" class="form-control" value="${
+                sermon.title
+              }" onchange="updateSermon(${index}, 'title', this.value)">
+            </div>
+            <div class="mb-2">
+              <label class="form-label fw-bold">Sermon Date:</label>
+              <input type="date" class="form-control" value="${
+                sermon.date
+              }" onchange="updateSermon(${index}, 'date', this.value)">
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold">Description:</label>
+              <textarea class="form-control" rows="3" onchange="updateSermon(${index}, 'description', this.value)">${
+            sermon.description
+          }</textarea>
+            </div>
+            <button class="btn btn-sm btn-danger" onclick="deleteSermon(${index})">Delete Sermon</button>
+          </div>
+        </div>
+        `;
+        });
+      }
+
+      function handleImageUpload(event, index) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          sermons[index].image = e.target.result;
+          renderSermons();
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function triggerImageChange(index) {
+        const fileInputs = document.querySelectorAll(`input[type='file']`);
+        if (fileInputs[index]) {
+          fileInputs[index].click();
+        }
+      }
+
+      function removeImage(index) {
+        if (confirm("Remove the image from this sermon?")) {
+          sermons[index].image = "";
+          renderSermons();
+        }
+      }
+
+      function updateSermon(index, key, value) {
+        sermons[index][key] = value;
+      }
+
+      function addSermon() {
+        sermons.push({
+          title: "",
+          date: "",
+          image: "",
+          description: "",
+        });
+        renderSermons();
+      }
+
+      function deleteSermon(index) {
+        if (confirm("Are you sure you want to delete this sermon?")) {
+          sermons.splice(index, 1);
+          renderSermons();
+        }
+      }
+
+      function saveSermons() {
+        fetch("/api/update-sermons", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ sermons }),
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("Sermons updated on the main website!");
+            } else {
+              alert("Failed to update sermons.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("An error occurred while saving sermons.");
+          });
+      }
+
+      renderSermons();
+    </script>
+  </body>
+</html>

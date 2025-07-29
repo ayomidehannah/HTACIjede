@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Holy Trinity Anglican Church, Ijede Website - Admin Events</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-light">
+    <div
+      class="container d-flex flex-column align-items-center justify-content-center py-5"
+      style="max-width: 900px"
+    >
+      <h1 class="display-3 text-center mb-5" style="font-weight: 700">
+        <span class="text-primary">Edit or Add Events</span>
+      </h1>
+
+      <div id="events-list" class="w-100 mb-4"></div>
+
+      <button
+        id="add-event-btn"
+        class="btn btn-success mb-4"
+        style="align-self: flex-start"
+      >
+        + Add Event
+      </button>
+
+      <button id="save-btn" class="btn btn-primary w-100" type="button">
+        Save Changes
+      </button>
+    </div>
+
+    <!-- Edit Modal -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      aria-labelledby="editModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <form id="editEventsForm" enctype="multipart/form-data">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editModalLabel">Edit Events</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div id="editEventsFields"></div>
+              <button
+                type="button"
+                class="btn btn-danger mt-3"
+                id="delete-event-btn"
+                style="display: none"
+              >
+                Delete Event
+              </button>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">
+                Save Changes
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const isAdmin = true;
+
+      let events = [
+        {
+          date: "2025-05-25",
+          dayTime: "Sun 08:00",
+          title: "135th Year Anniversary",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          image: "img/adultHarvest.jpg",
+          imageFile: null,
+        },
+        {
+          date: "2025-06-10",
+          dayTime: "Sat 10:00",
+          title: "Youth Fellowship Meeting",
+          description:
+            "Join us for a time of fellowship, worship, and prayer specifically for the youth group.",
+          image: "img/youthMeeting.jpg",
+          imageFile: null,
+        },
+      ];
+
+      const eventsList = document.getElementById("events-list");
+      const addEventBtn = document.getElementById("add-event-btn");
+      const saveBtn = document.getElementById("save-btn");
+
+      // Convert yyyy-mm-dd to readable format (for display in cards)
+      function formatDisplayDate(dateStr) {
+        if (!dateStr) return "";
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        const date = new Date(dateStr);
+        if (isNaN(date)) return dateStr;
+        return date.toLocaleDateString(undefined, options);
+      }
+
+      function renderEvents() {
+        eventsList.innerHTML = "";
+        events.forEach((ev, idx) => {
+          const eventCard = document.createElement("div");
+          eventCard.className = "card mb-4 shadow-sm";
+          eventCard.style.cursor = isAdmin ? "pointer" : "default";
+          eventCard.setAttribute("data-idx", idx);
+
+          eventCard.innerHTML = `
+            <div class="row g-0 align-items-center">
+              <div class="col-md-4">
+                <img src="${
+                  ev.image || ""
+                }" class="img-fluid rounded-start" alt="Event image" />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">${ev.title}</h5>
+                  <p class="card-text"><small class="text-muted">${formatDisplayDate(
+                    ev.date
+                  )} | ${ev.dayTime}</small></p>
+                  <p class="card-text">${ev.description}</p>
+                </div>
+              </div>
+            </div>
+          `;
+
+          if (isAdmin) {
+            eventCard.addEventListener("click", () => openEditModal(idx));
+          }
+
+          eventsList.appendChild(eventCard);
+        });
+      }
+
+      // Helper: Create image preview with delete button
+      function createImagePreview(src) {
+        return `
+          <div class="mb-3" id="image-preview-container">
+            <img src="${src}" alt="Event Image" class="img-thumbnail mb-2" style="max-height: 200px; object-fit: contain;" />
+            <div>
+              <button type="button" class="btn btn-danger btn-sm" id="remove-image-btn">Remove Image</button>
+            </div>
+          </div>
+        `;
+      }
+
+      function openEditModal(idx) {
+        const ev = events[idx];
+        const container = document.getElementById("editEventsFields");
+
+        container.innerHTML = `
+          <div class="mb-3">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" name="date" value="${
+              ev.date || ""
+            }" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Day & Time</label>
+            <input type="text" class="form-control" name="dayTime" value="${
+              ev.dayTime || ""
+            }" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" class="form-control" name="title" value="${
+              ev.title || ""
+            }" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" name="description" rows="3" required>${
+              ev.description || ""
+            }</textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Upload Image</label>
+            <input type="file" accept="image/*" class="form-control" id="image-upload" />
+          </div>
+          <div id="current-image-container"></div>
+        `;
+
+        // Show existing image preview if image exists
+        const currentImageContainer = document.getElementById(
+          "current-image-container"
+        );
+        if (ev.image) {
+          currentImageContainer.innerHTML = createImagePreview(ev.image);
+        } else {
+          currentImageContainer.innerHTML = "";
+        }
+
+        // Image input and preview logic
+        const imageUploadInput = document.getElementById("image-upload");
+
+        // Track image changed status to update events array accordingly
+        let newImageDataUrl = null;
+        let imageRemoved = false;
+
+        imageUploadInput.addEventListener("change", (event) => {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              currentImageContainer.innerHTML = createImagePreview(
+                e.target.result
+              );
+              newImageDataUrl = e.target.result;
+              imageRemoved = false;
+              attachRemoveImageHandler();
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+
+        // Remove image button handler
+        function attachRemoveImageHandler() {
+          const removeBtn = document.getElementById("remove-image-btn");
+          if (removeBtn) {
+            removeBtn.addEventListener("click", () => {
+              currentImageContainer.innerHTML = "";
+              imageUploadInput.value = "";
+              newImageDataUrl = null;
+              imageRemoved = true;
+            });
+          }
+        }
+        attachRemoveImageHandler();
+
+        // Show delete button
+        const deleteBtn = document.getElementById("delete-event-btn");
+        deleteBtn.style.display = "inline-block";
+        deleteBtn.onclick = () => {
+          if (confirm("Are you sure you want to delete this event?")) {
+            events.splice(idx, 1);
+            bootstrap.Modal.getInstance(
+              document.getElementById("editModal")
+            ).hide();
+            renderEvents();
+          }
+        };
+
+        // Save the currently edited index on the form for submit handling
+        const form = document.getElementById("editEventsForm");
+        form.dataset.editingIndex = idx;
+
+        // On form submit, save changes including image
+        form.onsubmit = (e) => {
+          e.preventDefault();
+
+          const formData = new FormData(form);
+          events[idx].date = formData.get("date") || "";
+          events[idx].dayTime = formData.get("dayTime") || "";
+          events[idx].title = formData.get("title") || "";
+          events[idx].description = formData.get("description") || "";
+
+          // Update image data
+          if (imageRemoved) {
+            events[idx].image = "";
+          } else if (newImageDataUrl) {
+            events[idx].image = newImageDataUrl;
+          }
+
+          bootstrap.Modal.getInstance(
+            document.getElementById("editModal")
+          ).hide();
+          renderEvents();
+        };
+
+        new bootstrap.Modal(document.getElementById("editModal")).show();
+      }
+
+      addEventBtn.addEventListener("click", () => {
+        const newEvent = {
+          date: "",
+          dayTime: "",
+          title: "",
+          description: "",
+          image: "",
+          imageFile: null,
+        };
+        events.push(newEvent);
+        renderEvents();
+        openEditModal(events.length - 1);
+      });
+
+      saveBtn.addEventListener("click", async () => {
+        try {
+          // Example: send event data, images as base64 strings or upload separately as needed
+          const response = await fetch("/api/save-events", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(events),
+          });
+
+          if (response.ok) {
+            alert("Events saved successfully!");
+          } else {
+            alert("Failed to save events. Please try again.");
+          }
+        } catch (error) {
+          alert("Error saving events: " + error.message);
+        }
+      });
+
+      renderEvents();
+    </script>
+
+    <!-- Bootstrap Bundle JS (includes Popper) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
