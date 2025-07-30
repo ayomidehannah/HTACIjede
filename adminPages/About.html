@@ -117,12 +117,31 @@
     </button>
 			-->	
 			
+<<<<<<< HEAD
 					
 			<!-- Button to trigger the modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addOptionalFormModal">
   Add Optional Details
 </button>
 
+=======
+			<!-- Area to display additional details -->
+<div class="mt-4" id="savedDetailsDisplay">
+  <h5>Additiional Content:</h5>
+  <div id="additionalDetailsBody" class=" mt-4">
+    <!-- Details will be added here by JavaScript -->
+  </div>
+</div>
+			<button type="button" class="btn btn-primary" data-bs-target="#addAdditionalDetails" id="additionalDetails">
+  Add Additional Details
+</button>		
+			<!-- Button to trigger the modal -->
+<!--
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addOptionalFormModal">
+  Add Optional Details
+</button>
+-->
+>>>>>>> 61377e4906a4efa87558ec3acffe2f500c576534
 <!-- Bootstrap Modal Structure -->
 <div class="modal fade" id="addOptionalFormModal" tabindex="-1" aria-labelledby="addOptionalFormModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -149,12 +168,21 @@
 </div>
 
 <!-- Area to display saved details -->
+<<<<<<< HEAD
 <div class="mt-4" id="savedDetailsDisplay">
   <h5>Saved Optional Details:</h5>
   <ul id="detailsList">
     <!-- Details will be added here by JavaScript -->
   </ul>
 </div>
+=======
+<!--<div class="mt-4" id="savedDetailsDisplay">
+  <h5>Saved Optional Details:</h5>
+  <ul id="detailsList">
+    <!-- Details will be added here by JavaScript -->
+ <!-- </ul>
+</div> -->
+>>>>>>> 61377e4906a4efa87558ec3acffe2f500c576534
 
 
 
@@ -221,20 +249,122 @@
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
 			 <!-- Bootstrap JavaScript (Bundle includes Popper) -->
+<<<<<<< HEAD
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
 	document.getElementById('optionalDetailsForm').addEventListener('submit', function(event) {
+=======
+     <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>-->
+	<script>
+	  let count=0;
+	document.getElementById('additionalDetails').addEventListener('click', function(event) {
+  event.preventDefault(); 
+  // create a div for the inpul label and input field
+  const inputDiv = document.createElement('div');
+  inputDiv.className = 'mb-3';
+ 
+ // create a label for the input field
+		const label =document.createElement('label');
+		label.textContent ="Content Title";
+		label.classList.add('form-label');
+		 
+// create an input field
+  const inputField = document.createElement("input");
+	   inputField.setAttribute("type", "text");
+	 inputField.classList.add('form-control');
+		
+		 //add label and input field to the input div
+		 inputDiv.appendChild(label);
+		 inputDiv.appendChild(inputField);
+	
+	
+		// create a div for the label and text area field
+		const textAreaDiv = document.createElement('div');
+		textAreaDiv.className = 'mb-3';
+		
+		// create a text area field
+	const textareaElement = document.createElement("textarea");
+	 textareaElement.setAttribute("rows", "3");
+	 textareaElement.classList.add('form-control');
+	
+		// create a label for the text area field
+		const label2 =document.createElement('label');
+		label2.textContent ="Content Details"
+		
+		
+		 // add text area label and text area to the text area div
+		 textAreaDiv.appendChild(label2);
+		 textAreaDiv.appendChild(textareaElement);
+		 
+		 //create a card div for the additional detail
+		 const cardDiv= document.createElement('div');
+		 cardDiv.classList.add('card', 'mb-4');
+		 cardDiv.id=`additionalDetails${count}`;
+		 let id=`cardDetails${count}`
+		 cardDiv.innerHTML= '<div class="card-header"><button>Remove content</button></div><div class="card-body"> </div>';
+		cardDiv.children[1].id=id;
+		cardDiv.children[0].children[0].id=`additionalContentButton${count}`;
+		
+	//append card to the display 
+  document.getElementById('additionalDetailsBody').appendChild(cardDiv);
+		
+  // Append input and text area to the body of card
+  document.getElementById(id).appendChild(inputDiv);
+  document.getElementById(id).appendChild(textAreaDiv);
+ 
+ //set up action listener to delete addtional card
+
+ document.getElementById(`additionalContentButton${count}`).addEventListener('click', function(event) {
+  event.preventDefault(); 
+  const childElement = event.target;
+  
+  const parentElement = childElement.parentNode;
+        const grandparentElement = parentElement.parentNode;
+		 grandparentElement.parentNode.removeChild(grandparentElement);
+  
+  })
+ 
+  
+  count++;
+  });
+  
+  
+	/**document.getElementById('optionalDetailsForm').addEventListener('submit', function(event) {
+>>>>>>> 61377e4906a4efa87558ec3acffe2f500c576534
   event.preventDefault(); // Prevent default form submission
 
   const input1 = document.getElementById('optionalInput1').value;
   const input2 = document.getElementById('optionalInput2').value;
 
   // Create list item for displaying details
+<<<<<<< HEAD
   const listItem = document.createElement('li');
   listItem.textContent = `Field 1: ${input1}, Field 2: ${input2}`;
 
   // Append to the display area
   document.getElementById('detailsList').appendChild(listItem);
+=======
+  //const listItem = document.createElement('li');
+  //listItem.textContent = `Field 1: ${input1}, Field 2: ${input2}`;
+      const inputField = document.createElement("input");
+	   inputField.setAttribute("type", "text");
+	    inputField.value=input1;
+		
+		const theDiv = document.createElement('div');
+		const label =document.createElement('label');
+		label.textContent ="Content Title"
+		 theDiv.className = 'mb-3';
+		 theDiv.appendChild(label);
+		 theDiv.appendChild(inputField);
+		
+	const textareaElement = document.createElement("textarea");
+	 textareaElement.setAttribute("cols", "50");
+		textareaElement.value = input2;
+
+  // Append to the display area
+  document.getElementById('detailsList').appendChild(theDiv)
+  document.getElementById('detailsList').appendChild(textareaElement);
+>>>>>>> 61377e4906a4efa87558ec3acffe2f500c576534
 
   // Clear form fields
   document.getElementById('optionalInput1').value = '';
@@ -244,7 +374,11 @@
   const modalElement = document.getElementById('addOptionalFormModal');
   const modal = bootstrap.Modal.getInstance(modalElement);
   modal.hide();
+<<<<<<< HEAD
 });
+=======
+});**/
+>>>>>>> 61377e4906a4efa87558ec3acffe2f500c576534
 	</script>
 
     </body>
