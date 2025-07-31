@@ -86,7 +86,65 @@
                 errorMsg.textContent = 'Invalid username or password.';
                 errorMsg.style.display = 'block';
             }
-        });
+			
+	console.log('lets engage the api');		
+			const postData = {
+  "email": "superadmin@gmail.com",
+  "password": "123Pa$$word!"
+}
+const tenantId= 'defaulthtac';
+
+
+/*fetch('https://htacapi.onrender.com/api/defaulthtac/Account/authenticate', 
+{
+  method: 'POST', // Specify the HTTP method
+  headers: {
+    'X-TenantDomain': 'htacapi.onrender.com',
+	'Content-Type': 'application/json' // Set the content type of the request body
+	
+  },
+  body: JSON.stringify(postData) // Convert the JavaScript object to a JSON string
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('User created:', data);
+  })
+  .catch(error => {
+    console.error('Error creating user:', error);
+  });
+       */
+
+async function authenticateUser() {
+  try {
+    const response = await fetch(`https://htacapi.onrender.com/api/${tenantId}/Account/authenticate`, {
+      method: 'POST',
+      headers: {
+        'X-TenantDomain': 'htacapi.onrender.com',
+        'Content-Type': 'application/json',
+		'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify(postData)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('Authentication successful:', data);
+  } catch (error) {
+    console.error('Error during API authentication:', error.message);
+  }
+}
+
+authenticateUser();
+
+ });
     </script>
 </body>
 </html>
