@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>History Admin - Holy Trinity Anglican Church</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-light">
+    <div class="container my-4">
+      <h1 class="text-center text-primary fw-bold mb-4">
+        Admin: Edit Church History
+      </h1>
+
+      <!-- Section Editors -->
+      <h2 class="text-primary fw-semibold text-center my-3">
+        History of Holy Trinity Anglican Church The Early Days
+      </h2>
+      <textarea
+        class="form-control mb-4"
+        rows="6"
+        id="sectionEarlyDays"
+      ></textarea>
+
+      <h2 class="text-primary fw-semibold text-center my-3">
+        Founding Values and Members
+      </h2>
+      <textarea
+        class="form-control mb-4"
+        rows="6"
+        id="sectionFoundingValues"
+      ></textarea>
+
+      <h2 class="text-primary fw-semibold text-center my-3">
+        The Early Church
+      </h2>
+      <textarea
+        class="form-control mb-4"
+        rows="6"
+        id="sectionEarlyChurch"
+      ></textarea>
+
+      <h2 class="text-primary fw-semibold text-center my-3">
+        The Contemporary Church
+      </h2>
+      <textarea
+        class="form-control mb-4"
+        rows="6"
+        id="sectionContemporaryChurch"
+      ></textarea>
+
+      <!-- Founders Section -->
+      <h2 class="text-primary fw-semibold text-center my-4">
+        Meet Our Founders
+      </h2>
+
+      <ul class="nav nav-tabs mb-3" id="foundersTabs" role="tablist"></ul>
+      <div
+        class="tab-content border border-top-0 p-4 bg-white"
+        id="foundersTabContent"
+      ></div>
+
+      <div class="d-flex justify-content-between mt-3">
+        <button id="addFounderBtn" class="btn btn-success">
+          <i class="fa fa-plus"></i> Add Founder
+        </button>
+        <button id="deleteFounderBtn" class="btn btn-danger" disabled>
+          <i class="fa fa-trash"></i> Delete Founder
+        </button>
+      </div>
+
+      <div class="text-center mt-5">
+        <button id="saveAllBtn" class="btn btn-primary btn-lg px-5">
+          <i class="fa fa-save"></i> Save All Changes
+        </button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      const initialData = {
+        sectionEarlyDays: "Write about the early days here...",
+        sectionFoundingValues:
+          "Write about founding values and members here...",
+        sectionEarlyChurch: "Write about the early church here...",
+        sectionContemporaryChurch:
+          "Write about the contemporary church here...",
+        founders: [
+          { name: "Founder One", bio: "Bio of founder one.", photoUrl: "" },
+          { name: "Founder Two", bio: "Bio of founder two.", photoUrl: "" },
+        ],
+      };
+
+      document.getElementById("sectionEarlyDays").value =
+        initialData.sectionEarlyDays;
+      document.getElementById("sectionFoundingValues").value =
+        initialData.sectionFoundingValues;
+      document.getElementById("sectionEarlyChurch").value =
+        initialData.sectionEarlyChurch;
+      document.getElementById("sectionContemporaryChurch").value =
+        initialData.sectionContemporaryChurch;
+
+      let founders = [...initialData.founders];
+      const foundersTabs = document.getElementById("foundersTabs");
+      const foundersTabContent = document.getElementById("foundersTabContent");
+      const addFounderBtn = document.getElementById("addFounderBtn");
+      const deleteFounderBtn = document.getElementById("deleteFounderBtn");
+
+      function renderFoundersTabs() {
+        foundersTabs.innerHTML = "";
+        foundersTabContent.innerHTML = "";
+
+        founders.forEach((founder, i) => {
+          const tabId = `founder-tab-${i}`;
+          const paneId = `founder-pane-${i}`;
+
+          const li = document.createElement("li");
+          li.className = "nav-item";
+          li.role = "presentation";
+
+          const button = document.createElement("button");
+          button.className = "nav-link" + (i === 0 ? " active" : "");
+          button.id = tabId;
+          button.setAttribute("data-bs-toggle", "tab");
+          button.setAttribute("data-bs-target", `#${paneId}`);
+          button.type = "button";
+          button.role = "tab";
+          button.setAttribute("aria-controls", paneId);
+          button.setAttribute("aria-selected", i === 0 ? "true" : "false");
+          button.textContent = founder.name || `Founder ${i + 1}`;
+
+          li.appendChild(button);
+          foundersTabs.appendChild(li);
+
+          const div = document.createElement("div");
+          div.className = "tab-pane fade" + (i === 0 ? " show active" : "");
+          div.id = paneId;
+          div.role = "tabpanel";
+          div.setAttribute("aria-labelledby", tabId);
+
+          div.innerHTML = `
+        <div class="mb-3">
+          <label class="form-label fw-bold">Founder Name</label>
+          <input type="text" class="form-control founder-name" value="${
+            founder.name || ""
+          }" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-bold">Founder Bio</label>
+          <textarea class="form-control founder-bio" rows="5">${
+            founder.bio || ""
+          }</textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-bold">Founder Photo</label>
+          <input type="file" accept="image/*" class="form-control founder-photo-input" />
+          <img class="founder-photo-preview d-block mt-2" style="max-width:150px; border:2px solid #0d6efd; border-radius:6px; ${
+            founder.photoUrl ? "" : "display:none;"
+          }" src="${founder.photoUrl || ""}" alt="Founder Photo" />
+        </div>
+      `;
+
+          foundersTabContent.appendChild(div);
+
+          const photoInput = div.querySelector(".founder-photo-input");
+          const photoPreview = div.querySelector(".founder-photo-preview");
+
+          photoInput.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (file) {
+              const reader = new FileReader();
+              reader.onload = function (ev) {
+                photoPreview.src = ev.target.result;
+                photoPreview.style.display = "block";
+              };
+              reader.readAsDataURL(file);
+            } else {
+              photoPreview.src = "";
+              photoPreview.style.display = "none";
+            }
+          });
+        });
+
+        deleteFounderBtn.disabled = founders.length === 0;
+      }
+
+      addFounderBtn.addEventListener("click", () => {
+        founders.push({ name: "", bio: "", photoUrl: "" });
+        renderFoundersTabs();
+
+        const lastIndex = founders.length - 1;
+        const tabTriggerEl = foundersTabs.querySelectorAll("button")[lastIndex];
+        const tab = new bootstrap.Tab(tabTriggerEl);
+        tab.show();
+      });
+
+      deleteFounderBtn.addEventListener("click", () => {
+        const activeTab = foundersTabs.querySelector("button.nav-link.active");
+        const activeIndex = Array.from(foundersTabs.children).indexOf(
+          activeTab.parentElement
+        );
+        if (activeIndex > -1) {
+          founders.splice(activeIndex, 1);
+          renderFoundersTabs();
+        }
+      });
+
+      document
+        .getElementById("saveAllBtn")
+        .addEventListener("click", async () => {
+          const updatedData = {
+            sectionEarlyDays: document
+              .getElementById("sectionEarlyDays")
+              .value.trim(),
+            sectionFoundingValues: document
+              .getElementById("sectionFoundingValues")
+              .value.trim(),
+            sectionEarlyChurch: document
+              .getElementById("sectionEarlyChurch")
+              .value.trim(),
+            sectionContemporaryChurch: document
+              .getElementById("sectionContemporaryChurch")
+              .value.trim(),
+            founders: [],
+          };
+
+          const panes = foundersTabContent.querySelectorAll(".tab-pane");
+          for (const pane of panes) {
+            const name = pane.querySelector(".founder-name").value.trim();
+            const bio = pane.querySelector(".founder-bio").value.trim();
+            const photoInput = pane.querySelector(".founder-photo-input");
+            const file = photoInput.files[0];
+
+            let photoBase64 = "";
+            if (file) {
+              photoBase64 = await toBase64(file);
+            }
+
+            updatedData.founders.push({
+              name,
+              bio,
+              photo: photoBase64,
+            });
+          }
+
+          // Send data to backend
+          try {
+            const response = await fetch("/api/update-history", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(updatedData),
+            });
+
+            if (response.ok) {
+              alert("History updated successfully!");
+            } else {
+              alert("Error updating history.");
+            }
+          } catch (error) {
+            alert("Network error. Could not update history.");
+            console.error(error);
+          }
+        });
+
+      function toBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+        });
+      }
+
+      renderFoundersTabs();
+    </script>
+  </body>
+</html>
